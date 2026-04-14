@@ -8,262 +8,256 @@
 	"version": "v1.0.2",
 	"developer": "sidastuff",
 	"tags": [
-		"universal",
-		"gameplay",
 		"performance",
-		"utility"
+		"utility",
+		"universal"
 	],
-	"description": "Drastic performance optimization mod with 30+ enhancements. Improves graphics rendering, physics calculations, and overall game processing. Includes adjustable settings for fine-tuning performance.",
+	"description": "A Windows-only Geometry Dash performance mod focused on safe runtime behavior and high-performance GPU/process startup tuning.",
 	"dependencies": {
 		"geode.node-ids": ">=v1.20.0"
 	},
 	"settings": {
-		"graphics-title": {
+		"rendering-title": {
 			"type": "title",
-			"name": "Graphics Optimizations (1-15)"
+			"name": "Rendering"
 		},
 		"reduce-particles": {
-			"name": "1. Reduce Particles",
-			"description": "Decrease particle density for better performance",
+			"name": "Reduce Particles",
+			"description": "Scale particle counts down before allocation.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
 		"particle-density": {
-			"name": "Particle Density %",
-			"description": "0-100% of original particle count",
+			"name": "Particle Density",
+			"description": "Percentage of the original particle count to keep.",
 			"type": "int",
 			"default": 50,
 			"min": 0,
 			"max": 100
 		},
-		"reduce-shadows": {
-			"name": "2. Reduce Shadows",
-			"description": "Lower shadow quality",
-			"type": "bool",
-			"default": true
+		"minimum-particle-count": {
+			"name": "Minimum Particle Count",
+			"description": "Never reduce a particle system below this many particles.",
+			"type": "int",
+			"default": 8,
+			"min": 0,
+			"max": 64
 		},
-		"reduce-bloom": {
-			"name": "3. Optimize Bloom Effects",
-			"description": "Optimize bloom rendering",
-			"type": "bool",
-			"default": true
+		"particle-bucket-size": {
+			"name": "Particle Bucket Size",
+			"description": "Round particle capacities up to this bucket size.",
+			"type": "int",
+			"default": 16,
+			"min": 4,
+			"max": 64
 		},
 		"reduce-glow": {
-			"name": "4. Reduce Glow Rendering",
-			"description": "Decrease glow intensity",
+			"name": "Throttle Glow Draws",
+			"description": "Reduce the frequency of additive glow sprite draws when frame time rises.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
-		"disable-bg-effects": {
-			"name": "5. Disable Background Effects",
-			"description": "Turn off expensive background effects",
+		"reduce-bloom": {
+			"name": "Clamp Bright Opacity",
+			"description": "Clamp very bright sprite opacity values.",
 			"type": "bool",
 			"default": false
 		},
 		"optimize-sprites": {
-			"name": "6. Optimize Sprite Batching",
-			"description": "Improve sprite rendering efficiency",
+			"name": "Skip Redundant Visibility Changes",
+			"description": "Avoid repeated visibility updates when the value is unchanged.",
 			"type": "bool",
-			"default": true
-		},
-		"reduce-trails": {
-			"name": "7. Reduce Trail Quality",
-			"description": "Lower trail effect quality",
-			"type": "bool",
-			"default": true
-		},
-		"reduce-shaders": {
-			"name": "8. Optimize Shader Performance",
-			"description": "Simplify shader operations",
-			"type": "bool",
-			"default": true
+			"default": false
 		},
 		"lower-texture-quality": {
-			"name": "9. Lower Texture Quality",
-			"description": "Reduce texture resolution",
+			"name": "Quantize Sprite Opacity",
+			"description": "Round sprite opacity to coarser steps before applying it.",
 			"type": "bool",
 			"default": true
 		},
-		"disable-expensive-effects": {
-			"name": "10. Disable Expensive Effects",
-			"description": "Turn off costly visual effects",
-			"type": "bool",
-			"default": true
+		"opacity-step": {
+			"name": "Opacity Step",
+			"description": "Quantization step used for sprite opacity.",
+			"type": "int",
+			"default": 8,
+			"min": 1,
+			"max": 32
 		},
-		"reduce-portal-complexity": {
-			"name": "11. Reduce Portal Complexity",
-			"description": "Simplify portal rendering",
+		"cull-transparent-sprites": {
+			"name": "Cull Transparent Sprites",
+			"description": "Skip drawing sprites below the configured opacity threshold. Can affect visuals in some levels.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
-		"optimize-ui-rendering": {
-			"name": "12. Optimize UI Rendering",
-			"description": "Improve UI efficiency",
+		"transparent-opacity-threshold": {
+			"name": "Transparent Sprite Threshold",
+			"description": "Opacity value at or below which sprites are not drawn.",
+			"type": "int",
+			"default": 6,
+			"min": 0,
+			"max": 32
+		},
+		"cull-tiny-sprites": {
+			"name": "Cull Tiny Faded Sprites",
+			"description": "Skip very small, faded sprites that contribute little visually. Can affect visuals in some levels.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
-		"lower-animation-framerate": {
-			"name": "13. Lower Animation Frame Rate",
-			"description": "Reduce animation frame rate",
+		"tiny-sprite-threshold": {
+			"name": "Tiny Sprite Pixel Threshold",
+			"description": "Sprites at or below this size can be skipped when faded.",
+			"type": "int",
+			"default": 2,
+			"min": 1,
+			"max": 8
+		},
+		"enable-culling": {
+			"name": "Cull Off-Screen Draws",
+			"description": "Skip sprite and particle draws that are outside the visible area. Can break camera-heavy levels.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
-		"reduce-water-effects": {
-			"name": "14. Reduce Water Effects",
-			"description": "Lower water/fluid effects quality",
-			"type": "bool",
-			"default": true
+		"offscreen-padding": {
+			"name": "Off-Screen Padding",
+			"description": "Padding around the visible area used for object culling.",
+			"type": "int",
+			"default": 48,
+			"min": 0,
+			"max": 256
 		},
-		"optimize-post-processing": {
-			"name": "15. Optimize Post-Processing",
-			"description": "Simplify post-processing effects",
-			"type": "bool",
-			"default": true
-		},
-		"processing-title": {
+		"runtime-title": {
 			"type": "title",
-			"name": "Processing Optimizations (16-34)"
+			"name": "Runtime"
 		},
 		"reduce-physics": {
-			"name": "16. Reduce Physics Frequency",
-			"description": "Skip physics updates on certain frames",
+			"name": "Increase Optimization Cadence",
+			"description": "Raise the frame cadence used by runtime throttles.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
 		"physics-skip": {
-			"name": "Physics Frame Skip",
-			"description": "Skip physics frames (0-5)",
+			"name": "Cadence Strength",
+			"description": "How aggressively runtime throttles spread work across frames.",
 			"type": "int",
 			"default": 1,
 			"min": 0,
 			"max": 5
 		},
-		"optimize-collisions": {
-			"name": "17. Optimize Collision Detection",
-			"description": "Improve collision detection",
-			"type": "bool",
-			"default": true
-		},
-		"enable-culling": {
-			"name": "18. Reduce Off-Screen Updates",
-			"description": "Skip updates for off-screen objects",
+		"reduce-position-updates": {
+			"name": "Skip Redundant Position Updates",
+			"description": "Avoid applying tiny or repeated position changes.",
 			"type": "bool",
 			"default": true
 		},
 		"optimize-rotation": {
-			"name": "20. Optimize Rotation Calculations",
-			"description": "Cache rotation updates",
+			"name": "Skip Redundant Rotation Updates",
+			"description": "Avoid applying tiny or repeated rotation changes.",
 			"type": "bool",
 			"default": true
 		},
-		"reduce-position-updates": {
-			"name": "21. Reduce Position Updates",
-			"description": "Skip redundant position changes",
+		"skip-scale-updates": {
+			"name": "Skip Redundant Scale Updates",
+			"description": "Avoid applying tiny or repeated scale changes.",
 			"type": "bool",
 			"default": true
 		},
-		"optimize-curves": {
-			"name": "22. Optimize Curve Calculations",
-			"description": "Simplify curve math",
+		"skip-color-updates": {
+			"name": "Skip Redundant Color Updates",
+			"description": "Avoid reapplying sprite colors when they are unchanged.",
 			"type": "bool",
 			"default": true
 		},
 		"reduce-memory-allocs": {
-			"name": "23. Reduce Memory Allocations",
-			"description": "Use object pooling",
-			"type": "bool",
-			"default": true
-		},
-		"lazy-load": {
-			"name": "24. Lazy Load Assets",
-			"description": "Load assets on-demand",
-			"type": "bool",
-			"default": true
-		},
-		"optimize-events": {
-			"name": "25. Optimize Event Processing",
-			"description": "Reduce event check frequency",
-			"type": "bool",
-			"default": true
-		},
-		"reduce-timers": {
-			"name": "26. Reduce Timer Frequency",
-			"description": "Lower timer update frequency",
-			"type": "bool",
-			"default": true
-		},
-		"optimize-jump-mechanics": {
-			"name": "27. Optimize Jump Mechanics",
-			"description": "Simplify jump calculations",
-			"type": "bool",
-			"default": true
-		},
-		"reduce-audio-overhead": {
-			"name": "28. Reduce Audio Overhead",
-			"description": "Optimize audio processing",
+			"name": "Bucket Particle Allocations",
+			"description": "Round particle capacities up to fixed buckets to reduce reallocations.",
 			"type": "bool",
 			"default": true
 		},
 		"optimize-object-pooling": {
-			"name": "29. Optimize Object Pooling",
-			"description": "Improve object reuse",
+			"name": "Reuse Particle Capacity",
+			"description": "Reuse an existing particle capacity when the requested size stays close.",
 			"type": "bool",
 			"default": true
 		},
 		"cache-values": {
-			"name": "30. Cache Frequently Used Values",
-			"description": "Cache computed values",
-			"type": "bool",
-			"default": true
-		},
-		"reduce-decoration-updates": {
-			"name": "31. Reduce Decoration Updates",
-			"description": "Skip decoration recalculation",
-			"type": "bool",
-			"default": true
-		},
-		"optimize-input-processing": {
-			"name": "32. Optimize Input Processing",
-			"description": "Reduce input check frequency",
+			"name": "Skip Unchanged Values",
+			"description": "Avoid reapplying values when the current value already matches.",
 			"type": "bool",
 			"default": true
 		},
 		"reduce-effect-spawning": {
-			"name": "33. Reduce Effect Spawning",
-			"description": "Limit effect particle spawning",
+			"name": "Reduce Effect Spawning",
+			"description": "Further reduce particle-heavy effect systems. Can alter level visuals.",
 			"type": "bool",
-			"default": true
+			"default": false
 		},
-		"optimize-ccnode-updates": {
-			"name": "34. Optimize CCNode Updates",
-			"description": "Skip redundant node updates",
+		"lower-animation-framerate": {
+			"name": "Lower Effect Update Cadence",
+			"description": "Lower the update cadence used for particle-heavy effects.",
 			"type": "bool",
-			"default": true
+			"default": false
+		},
+		"windows-title": {
+			"type": "title",
+			"name": "Windows GPU and Startup"
+		},
+		"gpu-preference-note": {
+			"type": "title",
+			"name": "Main Feature: Dedicated GPU Preference"
+		},
+		"process-priority-level": {
+			"name": "Process Priority",
+			"description": "0 = Normal, 1 = Above Normal, 2 = High.",
+			"type": "int",
+			"default": 1,
+			"min": 0,
+			"max": 2,
+			"requires-restart": true
+		},
+		"disable-priority-boost": {
+			"name": "Disable Priority Boost",
+			"description": "Disable Windows priority boosting for the process.",
+			"type": "bool",
+			"default": true,
+			"requires-restart": true
+		},
+		"disable-power-throttling": {
+			"name": "Disable Power Throttling",
+			"description": "Ask Windows not to apply execution-speed throttling to the game process.",
+			"type": "bool",
+			"default": true,
+			"requires-restart": true
+		},
+		"raise-timer-resolution": {
+			"name": "Raise Timer Resolution",
+			"description": "Request a 1ms multimedia timer resolution for the game process.",
+			"type": "bool",
+			"default": true,
+			"requires-restart": true
 		},
 		"advanced-title": {
 			"type": "title",
-			"name": "Advanced Settings"
+			"name": "Advanced"
 		},
 		"aggressive-mode": {
-			"name": "Aggressive Optimization Mode",
-			"description": "Enable aggressive optimizations (may affect gameplay)",
+			"name": "Aggressive Mode",
+			"description": "Apply stronger reductions to particle and glow-heavy paths.",
 			"type": "bool",
 			"default": false
 		},
 		"log-metrics": {
-			"name": "Log Performance Metrics",
-			"description": "Log performance data to console",
+			"name": "Log Metrics",
+			"description": "Print runtime counters every 300 frames.",
 			"type": "bool",
 			"default": false
 		},
 		"target-fps": {
 			"name": "Target FPS",
-			"description": "Target frame rate (60-240)",
+			"description": "Animation interval used for the game director.",
 			"type": "int",
 			"default": 240,
 			"min": 60,
-			"max": 240
+			"max": 360
 		}
 	}
 }
-
