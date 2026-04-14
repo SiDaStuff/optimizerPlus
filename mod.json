@@ -1,0 +1,269 @@
+{
+	"geode": "5.0.1",
+	"gd": {
+		"win": "*"
+	},
+	"id": "sidastuff.optimizerplus",
+	"name": "OptimizerPlus",
+	"version": "v1.0.2",
+	"developer": "sidastuff",
+	"tags": [
+		"universal",
+		"gameplay",
+		"performance",
+		"utility"
+	],
+	"description": "Drastic performance optimization mod with 30+ enhancements. Improves graphics rendering, physics calculations, and overall game processing. Includes adjustable settings for fine-tuning performance.",
+	"dependencies": {
+		"geode.node-ids": ">=v1.20.0"
+	},
+	"settings": {
+		"graphics-title": {
+			"type": "title",
+			"name": "Graphics Optimizations (1-15)"
+		},
+		"reduce-particles": {
+			"name": "1. Reduce Particles",
+			"description": "Decrease particle density for better performance",
+			"type": "bool",
+			"default": true
+		},
+		"particle-density": {
+			"name": "Particle Density %",
+			"description": "0-100% of original particle count",
+			"type": "int",
+			"default": 50,
+			"min": 0,
+			"max": 100
+		},
+		"reduce-shadows": {
+			"name": "2. Reduce Shadows",
+			"description": "Lower shadow quality",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-bloom": {
+			"name": "3. Optimize Bloom Effects",
+			"description": "Optimize bloom rendering",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-glow": {
+			"name": "4. Reduce Glow Rendering",
+			"description": "Decrease glow intensity",
+			"type": "bool",
+			"default": true
+		},
+		"disable-bg-effects": {
+			"name": "5. Disable Background Effects",
+			"description": "Turn off expensive background effects",
+			"type": "bool",
+			"default": false
+		},
+		"optimize-sprites": {
+			"name": "6. Optimize Sprite Batching",
+			"description": "Improve sprite rendering efficiency",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-trails": {
+			"name": "7. Reduce Trail Quality",
+			"description": "Lower trail effect quality",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-shaders": {
+			"name": "8. Optimize Shader Performance",
+			"description": "Simplify shader operations",
+			"type": "bool",
+			"default": true
+		},
+		"lower-texture-quality": {
+			"name": "9. Lower Texture Quality",
+			"description": "Reduce texture resolution",
+			"type": "bool",
+			"default": true
+		},
+		"disable-expensive-effects": {
+			"name": "10. Disable Expensive Effects",
+			"description": "Turn off costly visual effects",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-portal-complexity": {
+			"name": "11. Reduce Portal Complexity",
+			"description": "Simplify portal rendering",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-ui-rendering": {
+			"name": "12. Optimize UI Rendering",
+			"description": "Improve UI efficiency",
+			"type": "bool",
+			"default": true
+		},
+		"lower-animation-framerate": {
+			"name": "13. Lower Animation Frame Rate",
+			"description": "Reduce animation frame rate",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-water-effects": {
+			"name": "14. Reduce Water Effects",
+			"description": "Lower water/fluid effects quality",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-post-processing": {
+			"name": "15. Optimize Post-Processing",
+			"description": "Simplify post-processing effects",
+			"type": "bool",
+			"default": true
+		},
+		"processing-title": {
+			"type": "title",
+			"name": "Processing Optimizations (16-34)"
+		},
+		"reduce-physics": {
+			"name": "16. Reduce Physics Frequency",
+			"description": "Skip physics updates on certain frames",
+			"type": "bool",
+			"default": true
+		},
+		"physics-skip": {
+			"name": "Physics Frame Skip",
+			"description": "Skip physics frames (0-5)",
+			"type": "int",
+			"default": 1,
+			"min": 0,
+			"max": 5
+		},
+		"optimize-collisions": {
+			"name": "17. Optimize Collision Detection",
+			"description": "Improve collision detection",
+			"type": "bool",
+			"default": true
+		},
+		"enable-culling": {
+			"name": "18. Reduce Off-Screen Updates",
+			"description": "Skip updates for off-screen objects",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-rotation": {
+			"name": "20. Optimize Rotation Calculations",
+			"description": "Cache rotation updates",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-position-updates": {
+			"name": "21. Reduce Position Updates",
+			"description": "Skip redundant position changes",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-curves": {
+			"name": "22. Optimize Curve Calculations",
+			"description": "Simplify curve math",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-memory-allocs": {
+			"name": "23. Reduce Memory Allocations",
+			"description": "Use object pooling",
+			"type": "bool",
+			"default": true
+		},
+		"lazy-load": {
+			"name": "24. Lazy Load Assets",
+			"description": "Load assets on-demand",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-events": {
+			"name": "25. Optimize Event Processing",
+			"description": "Reduce event check frequency",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-timers": {
+			"name": "26. Reduce Timer Frequency",
+			"description": "Lower timer update frequency",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-jump-mechanics": {
+			"name": "27. Optimize Jump Mechanics",
+			"description": "Simplify jump calculations",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-audio-overhead": {
+			"name": "28. Reduce Audio Overhead",
+			"description": "Optimize audio processing",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-object-pooling": {
+			"name": "29. Optimize Object Pooling",
+			"description": "Improve object reuse",
+			"type": "bool",
+			"default": true
+		},
+		"cache-values": {
+			"name": "30. Cache Frequently Used Values",
+			"description": "Cache computed values",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-decoration-updates": {
+			"name": "31. Reduce Decoration Updates",
+			"description": "Skip decoration recalculation",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-input-processing": {
+			"name": "32. Optimize Input Processing",
+			"description": "Reduce input check frequency",
+			"type": "bool",
+			"default": true
+		},
+		"reduce-effect-spawning": {
+			"name": "33. Reduce Effect Spawning",
+			"description": "Limit effect particle spawning",
+			"type": "bool",
+			"default": true
+		},
+		"optimize-ccnode-updates": {
+			"name": "34. Optimize CCNode Updates",
+			"description": "Skip redundant node updates",
+			"type": "bool",
+			"default": true
+		},
+		"advanced-title": {
+			"type": "title",
+			"name": "Advanced Settings"
+		},
+		"aggressive-mode": {
+			"name": "Aggressive Optimization Mode",
+			"description": "Enable aggressive optimizations (may affect gameplay)",
+			"type": "bool",
+			"default": false
+		},
+		"log-metrics": {
+			"name": "Log Performance Metrics",
+			"description": "Log performance data to console",
+			"type": "bool",
+			"default": false
+		},
+		"target-fps": {
+			"name": "Target FPS",
+			"description": "Target frame rate (60-240)",
+			"type": "int",
+			"default": 240,
+			"min": 60,
+			"max": 240
+		}
+	}
+}
+
