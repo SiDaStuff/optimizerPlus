@@ -8,22 +8,29 @@
 using namespace geode::prelude;
 
 struct OptimizerConfig {
+    // Rendering / particle controls.
     bool reduceParticles = false;
     int particleDensity = 50;
     int minimumParticleCount = 8;
     int particleBucketSize = 16;
+    bool particlePanicMode = false;
 
     bool reduceGlow = false;
     bool reduceBloom = false;
+    bool ultraGlowCut = false;
     bool optimizeSpriteBatching = true;
     bool lowerTextureQuality = false;
     int opacityQuantizationStep = 8;
     bool cullTransparentSprites = false;
+    bool transparentCullPlus = false;
     int transparentOpacityThreshold = 6;
     bool cullTinySprites = false;
     int tinySpritePixelThreshold = 2;
+    bool decorationSleep = false;
     bool enableObjectCulling = false;
     int offscreenPadding = 48;
+    bool levelOnlyPerformanceMode = false;
+    bool adaptivePanicMode = false;
 
     bool reducePhysicsFreq = false;
     int physicsFrameSkip = 1;
@@ -37,10 +44,13 @@ struct OptimizerConfig {
     bool reduceEffectSpawning = false;
     bool lowerAnimationFrameRate = false;
 
+    // Windows-only process tuning. These are startup-only because Windows keeps
+    // the process flags after they are applied.
     int processPriorityLevel = 1;
     bool disablePriorityBoost = true;
     bool disablePowerThrottling = true;
     bool raiseTimerResolution = true;
+    bool startupTurboPreset = false;
 
     bool enableAggressiveOptimizations = false;
     bool logPerformanceMetrics = false;
@@ -48,6 +58,8 @@ struct OptimizerConfig {
 };
 
 struct PerfMetrics {
+    // These counters are only for telemetry/logging; they are never consulted
+    // for gameplay logic.
     uint64_t frameCount = 0;
     uint64_t skippedVisibilityUpdates = 0;
     uint64_t skippedPositionUpdates = 0;
@@ -59,16 +71,21 @@ struct PerfMetrics {
     uint64_t culledTinySprites = 0;
     uint64_t reducedParticles = 0;
     uint64_t throttledGlowDraws = 0;
+    uint64_t sleptDecorationDraws = 0;
+    uint64_t panicFrames = 0;
     double avgFrameMs = 0.0;
 };
 
 struct RuntimeState {
+    // Runtime-only derived state so we do not have to recompute cadence from
+    // settings on every individual hook call.
     std::chrono::steady_clock::time_point lastFrameTime {};
     bool initialized = false;
     bool windowsTweaksApplied = false;
     bool timerResolutionRaised = false;
     int glowDrawCadence = 1;
     int frameCadence = 1;
+    int panicLevel = 0;
 };
 
 extern OptimizerConfig g_config;

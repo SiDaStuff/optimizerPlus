@@ -5,7 +5,7 @@
 	},
 	"id": "sidastuff.optimizerplus",
 	"name": "OptimizerPlus",
-	"version": "v1.0.2",
+	"version": "v1.0.4",
 	"developer": "sidastuff",
 	"tags": [
 		"performance",
@@ -20,6 +20,46 @@
 		"rendering-title": {
 			"type": "title",
 			"name": "Rendering"
+		},
+		"magic-title": {
+			"type": "title",
+			"name": "Magic Speed Buttons"
+		},
+		"level-only-performance-mode": {
+			"name": "Level Load Lite",
+			"description": "Only apply the heavier visual cuts while actually inside a level.",
+			"type": "bool",
+			"default": false
+		},
+		"adaptive-panic-mode": {
+			"name": "Adaptive Panic Mode",
+			"description": "Turn up visual and particle cuts automatically when frame time starts slipping.",
+			"type": "bool",
+			"default": false
+		},
+		"ultra-glow-cut": {
+			"name": "Ultra Glow Cut",
+			"description": "Clamp glow-heavy opacity harder and spread additive glow draws across more frames.",
+			"type": "bool",
+			"default": false
+		},
+		"particle-panic-mode": {
+			"name": "Particle Panic Mode",
+			"description": "Push particle counts down harder and reuse particle capacities more aggressively.",
+			"type": "bool",
+			"default": false
+		},
+		"decoration-sleep": {
+			"name": "Decoration Sleep",
+			"description": "Throttle lower-importance decorative sprites more often when they are faint, tiny, or glow-like.",
+			"type": "bool",
+			"default": false
+		},
+		"transparent-cull-plus": {
+			"name": "Transparent Cull+",
+			"description": "Use stricter transparent and tiny-sprite culling even before the regular thresholds get extreme.",
+			"type": "bool",
+			"default": false
 		},
 		"reduce-particles": {
 			"name": "Reduce Particles",
@@ -233,6 +273,13 @@
 			"description": "Request a 1ms multimedia timer resolution for the game process.",
 			"type": "bool",
 			"default": true,
+			"requires-restart": true
+		},
+		"startup-turbo-preset": {
+			"name": "Startup Turbo Preset",
+			"description": "Force the strongest startup-side Windows tuning preset. Requires restart to apply.",
+			"type": "bool",
+			"default": false,
 			"requires-restart": true
 		},
 		"advanced-title": {

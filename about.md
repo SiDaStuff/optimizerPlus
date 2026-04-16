@@ -13,4 +13,11 @@ The in-game optimizations are kept intentionally safe by default:
 - apply an optional target animation interval through `CCDirector`
 - offer optional visual reductions like particle scaling or glow throttling, but these are off by default so they do not interfere with level presentation
 
+The newer "magic speed button" presets are meant for when you want faster results without tuning every setting by hand:
+- `Adaptive Panic Mode` raises the cut level automatically when frame time gets worse than your target
+- `Ultra Glow Cut`, `Particle Panic Mode`, and `Transparent Cull+` stack stronger visual reductions on top of the normal settings
+- `Decoration Sleep` spreads lower-importance decorative sprite draws across more frames
+- `Level Load Lite` keeps the heavier visual cuts focused on actual gameplay scenes
+- `Startup Turbo Preset` forces the strongest Windows startup-side tuning, but needs a restart
+
 This project targets Geode `5.0.1`, Geometry Dash `2.2081`, and Windows only.

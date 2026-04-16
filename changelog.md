@@ -1,8 +1,8 @@
 # OptimizerPlus Changelog
 
-## Version 1.0.2 - Alpha Release (April 2026)
+## Version 1.0.4 - Alpha Release (April 2026)
 
-- expanded the runtime hooks with scale, color, transparent sprite, tiny sprite, and particle update throttles
-- added live-reloadable rendering and runtime settings for culling, opacity quantization, particle bucketing, and effect cadence
-- added Windows startup settings for process priority, power throttling, timer resolution, and priority boost behavior
-- marked startup-only Windows settings as restart-required in Geode
+- added magic speed button presets like Adaptive Panic Mode, Ultra Glow Cut, Particle Panic Mode, Decoration Sleep, Transparent Cull+, and Level Load Lite
+- added startup turbo preset wiring for stronger Windows-side process tuning on restart
+- added real off-screen sprite culling and panic-aware runtime scaling for particle, glow, and opacity reductions
+- expanded runtime logging so it can report panic level and decoration sleep activity

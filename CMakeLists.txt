@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(optimizerPlus VERSION 1.0.2 LANGUAGES CXX)
+project(optimizerPlus VERSION 1.0.4 LANGUAGES CXX)
 
 if (NOT WIN32)
     message(FATAL_ERROR "OptimizerPlus currently supports Windows builds only.")
@@ -33,7 +33,7 @@ else()
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
-    OPTIMIZER_VERSION="1.0.2"
+    OPTIMIZER_VERSION="1.0.4"
     OPTIMIZER_AUTHOR="sidastuff"
     NOMINMAX
 )
